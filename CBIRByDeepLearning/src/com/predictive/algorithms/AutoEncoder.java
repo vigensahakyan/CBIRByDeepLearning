@@ -83,9 +83,7 @@ public class AutoEncoder extends NeuralNetworkBase {
 			FeedForward(i);
 			Xoutput[i]=copyArray(AUnit[1]);
 		}
-//		for(int i=0;i<AUnit[L-1].length;++i){
-//		System.out.println(AUnit[L-1][i]);
-//		}
+
 	}
 	
 	public double [] predict(double [] XInputfeet){
