@@ -3,12 +3,13 @@ package com.prediction.services;
 import com.predictive.algorithms.NeuralNetwork;
 
 public class NeuralNetworModelSingleton {
-	private static NeuralNetworModelSingleton NNMSInstance=null;
+	private static NeuralNetworModelSingleton NNMSInstance = null;
 	private NeuralNetwork NN;
-	
-	private NeuralNetworModelSingleton(){
-		
+
+	private NeuralNetworModelSingleton() {
+
 	}
+
 	// Lazy Initialization (If required then only)
 	public static NeuralNetworModelSingleton getInstance() {
 		if (NNMSInstance == null) {
@@ -21,11 +22,12 @@ public class NeuralNetworModelSingleton {
 		}
 		return NNMSInstance;
 	}
-	
-	public void setNeuralNetwork(NeuralNetwork nn){
-		NN=nn;
+
+	public void setNeuralNetwork(NeuralNetwork nn) {
+		NN = nn;
 	}
-	public NeuralNetwork getNeuralNetwork(){
+
+	public NeuralNetwork getNeuralNetwork() {
 		return NN;
 	}
 }

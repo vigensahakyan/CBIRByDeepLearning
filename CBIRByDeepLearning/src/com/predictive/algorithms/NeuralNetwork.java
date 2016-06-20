@@ -11,30 +11,31 @@ import org.apache.commons.lang3.ArrayUtils;
 import com.helper.tools.CSVReader;
 
 public class NeuralNetwork extends NeuralNetworkBase {
-	
+
 	public NeuralNetwork() {
 		super();
 	}
-	public NeuralNetwork(int Lsize, int[] LvecOfsize){
-		super(Lsize,LvecOfsize);
+
+	public NeuralNetwork(int Lsize, int[] LvecOfsize) {
+		super(Lsize, LvecOfsize);
 	}
-	
-	public void InitializeTrainingData(String pathtoCSV) throws IOException{ 
+
+	public void InitializeTrainingData(String pathtoCSV) throws IOException {
 		super.InitializeTrainingData(pathtoCSV);
-		
-		CSVReader csvr = new CSVReader(pathtoCSV,0);
+
+		CSVReader csvr = new CSVReader(pathtoCSV, 0);
 		int numRow = csvr.getRowNum();
 		Set<Double> uniqueNumbers = new HashSet<Double>(Arrays.asList(ArrayUtils.toObject(YInpRaw)));
 		double s = Collections.max(uniqueNumbers);
-		int classCount = (int)s+1; 
-		YInput = new double[numRow][classCount]; 
-		for(int k = 0; k<numRow; ++k){ 
-			double [] tmpY = new double[classCount]; 
-			
-			tmpY[(int)YInpRaw[k]]=1;
-			YInput[k]=tmpY;
+		int classCount = (int) s + 1;
+		YInput = new double[numRow][classCount];
+		for (int k = 0; k < numRow; ++k) {
+			double[] tmpY = new double[classCount];
+
+			tmpY[(int) YInpRaw[k]] = 1;
+			YInput[k] = tmpY;
 		}
-		
+
 	}
 
 	@Override
@@ -42,26 +43,26 @@ public class NeuralNetwork extends NeuralNetworkBase {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	
-	public int getResultClass(){
-		double maxv=0;
-		int maxind=-1;
-		for(int i=0;i<AUnit[L-1].length;++i){
-			if(AUnit[L-1][i]>maxv){
-				maxv=AUnit[L-1][i];
-				maxind=i;
+
+	public int getResultClass() {
+		double maxv = 0;
+		int maxind = -1;
+		for (int i = 0; i < AUnit[L - 1].length; ++i) {
+			if (AUnit[L - 1][i] > maxv) {
+				maxv = AUnit[L - 1][i];
+				maxind = i;
 			}
 		}
-		//if(maxv >1){
-			return maxind;
-		//}else{
-			//return 9999;
-		//}	
+		// if(maxv >1){
+		return maxind;
+		// }else{
+		// return 9999;
+		// }
 	}
-	
-	public int predict(double [] XInputfeet){
+
+	public int predict(double[] XInputfeet) {
 		FeedForward(XInputfeet);
 		return getResultClass();
 	}
-	
+
 }
